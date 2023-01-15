@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">QRGenerator</string>
+    <string name="text_prompt">Hello to QR code scanner and generator! \n Select what happens next.</string>
+    <string name="button_one">GENERATE QR</string>
+    <string name="button_two">SCAN QR</string>
+    <string name="genQR">Generated QR will appear here</string>
+    <string name="text">Add text to generate QR code</string>
+    <string name="ImageViewDescription">Image view descriptor</string>
+    <string name="BackButton">Back</string>
+</resources>
