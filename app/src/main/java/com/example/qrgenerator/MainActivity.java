@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,15 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         //handler for duration of time (how much the loading screen stays)
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                    //here specify the actions we want to perform after the time passes
-                    //create home activity to open a home page (new activity -> empty activity) and call it after the loading screen
-                Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(i);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+                //here specify the actions we want to perform after the time passes
+                //create home activity to open a home page (new activity -> empty activity) and call it after the loading screen
+            Intent i = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(i);
+            finish();
         }, 2000);
 
 

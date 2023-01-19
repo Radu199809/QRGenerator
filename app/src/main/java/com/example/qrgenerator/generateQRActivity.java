@@ -6,15 +6,10 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.MediaScannerConnection;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,9 +26,8 @@ import com.google.zxing.common.BitMatrix;
 
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.Objects;
+
 
 public class generateQRActivity extends AppCompatActivity {
     //declare variables for elements in activity_generate_qractivity
@@ -41,7 +35,6 @@ public class generateQRActivity extends AppCompatActivity {
     private ImageView qrIV;
     private TextInputEditText dataET;
     private androidx.appcompat.widget.AppCompatButton generateQRBtn;
-    private androidx.appcompat.widget.AppCompatButton backBTN;
     private BitMatrix bitmap;
 
     @Override
@@ -54,26 +47,17 @@ public class generateQRActivity extends AppCompatActivity {
         qrIV = findViewById(R.id.QRImgView);
         dataET = findViewById(R.id.InputData);
         generateQRBtn = findViewById(R.id.generateBtn);
-        backBTN = findViewById(R.id.backBtn);
-
-
+        androidx.appcompat.widget.AppCompatButton backBTN = findViewById(R.id.backBtn);
 
 
         generateQRBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = dataET.getText().toString();
+                String input = Objects.requireNonNull(dataET.getText()).toString();
                 MultiFormatWriter mWriter = new MultiFormatWriter();
                 if(input.isEmpty()){
                     Toast.makeText(generateQRActivity.this, "Please enter text to generate QR", Toast.LENGTH_SHORT).show();
                 }else{
-//                    WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
-//                    Display display = manager.getDefaultDisplay();
-//                    Point point = new Point();
-//                    display.getSize(point);
-//                    int width = point.x;
-//                    int height = point.y;
-
 
                     try {
                         bitmap = mWriter.encode(input, BarcodeFormat.QR_CODE, 250, 250);

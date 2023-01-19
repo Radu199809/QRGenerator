@@ -10,4 +10,5 @@
 
 
     <color name="custom">#FF01CDF6</color>
+    <color name="custom_grey">#BABABA</color>
 </resources>
